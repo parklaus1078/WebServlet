@@ -14,3 +14,15 @@
    3. Response's header Content-Type: HTML(ResponseHtmlServlet)
    4. Response's header Content-Type: Json(ResponseJsonServlet)
 
+
+# Servlet, JSP, MVC Patterns
+- Project: User Management Web Application
+  - Requirements(Functionality)
+    - store user information
+    - view list of user information
+  - User information:
+    - name: `username`
+    - age: `age`
+    - email: `email` - format: email@domain.com
+    - password: `password`
+  
