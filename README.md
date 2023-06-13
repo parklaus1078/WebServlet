@@ -25,5 +25,17 @@
     - age: `age`
     - email: `email` - format: email@domain.com
     - password: `password`
+  - Routes
+    - servlet/members/new-form : Provides a form that accepts a user's username, age, email, and password.
+    - servlet/members/save     : Saves the values entered in the form provided.
+    - servlet/members          : Lists the information of the members entered so far.
   
-
+# Template Engine: JSP, Thymeleaf, Freemaker, Velocity, ...
+- Why?
+  - In the previous step, I could create a view by writing html codes in strings with PrintWriter only because it was SO SHORT.
+  - This is very complicated and inefficient.
+  - Template Engine allows embedding Java source in the middle of html source, where the view has to be changed dynamically.
+  - Rather than making HTML with Java, embedding Java sources in the HTML source would make server-side rendering much easier. 
+- What I am going to use:
+  - JSP(outdated)
+  - Thymeleaf
