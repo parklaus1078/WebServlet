@@ -39,3 +39,25 @@
 - What I am going to use:
   - JSP(outdated)
   - Thymeleaf
+- Project: Web Application(using jsp)
+  - Use JSP to create same user management application that I created with Webservlet
+  - Things to be aware:
+    1. implementation
+    - ```implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'```
+    - ```implementation 'javax.servlet:jstl'```
+      - The second line only works in SpringBoot under 3.0
+      - Since I am using SpringBoot 3.1.0, I had to substitute this line with other 3 lines.
+      - ```implementation 'jakarta.servlet:jakarta.servlet-api'```
+      - ```implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'```
+      - ```implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'```
+    
+    2. Limit of Servlet and JSP
+    - When programming in Servlet, creating HTML for the View display is in the middle of Java source. Hence, it is very likely to make mistake when writing html.
+    - When programming in jsp, creating HTML is simpler and easier, and I only needed to embed Java sources where the View need to be dynamic.
+    - However, putting HTML source and Java source together looks awful since the whole project solely depends on JSP.
+    - Hence, MVC pattern enters the scene.
+
+# MVC pattern
+- What?
+  - Servlet takes care of the business logics
+  - JSP focuses on drawing View using HTML
