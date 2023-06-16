@@ -93,3 +93,10 @@
         - request has data storage as the properties.
         - ```request.setAttribute()``` sets(stores) the data inside the request. 
         - ```request.getAttribute()``` gets(loads) the data from the request.
+  - Key points: 
+    - ```/WEB-INF```: if the JSP files are located under this directory, the client cannot request to the file. Only the requests made from the server can be reached.
+    - ```RequestDispatcher.forward()```: Variable having RequestDispatcher can forward the request in the server(i.e. from servlet to jsp, etc.).
+    - **redirect vs forward**:
+      - Redirection is made by the Clients. The response arrives to the Client, and the client request to the redirect path provided by the response. Hence, the Client can track the requests, and URL path changes.
+      - Forwaring is made by the server. Since the server tosses the request from client to another servlet or jsp file, the client cannot track the behaviour.
+
