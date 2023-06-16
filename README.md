@@ -39,3 +39,64 @@
 - What I am going to use:
   - JSP(outdated)
   - Thymeleaf
+- Project: Web Application(using jsp)
+  - Use JSP to create same user management application that I created with Webservlet
+  - Things to be aware:
+    1. implementation
+    - ```implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'```
+    - ```implementation 'javax.servlet:jstl'```
+      - The second line only works in SpringBoot under 3.0
+      - Since I am using SpringBoot 3.1.0, I had to substitute this line with other 3 lines.
+      - ```implementation 'jakarta.servlet:jakarta.servlet-api'```
+      - ```implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'```
+      - ```implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'```
+    
+    2. Limit of Servlet and JSP
+    - When programming in Servlet, creating HTML for the View display is in the middle of Java source. Hence, it is very likely to make mistake when writing html.
+    - When programming in jsp, creating HTML is simpler and easier, and I only needed to embed Java sources where the View need to be dynamic.
+    - However, putting HTML source and Java source together looks awful since the whole project solely depends on JSP.
+    - Hence, MVC pattern enters the scene.
+
+# MVC pattern
+- What?
+  - **Model**
+    1. Contains the data to be mapped by the View.
+    - Since the Model contains the computed data, which are ready to be mapped, View does not need to have any source code related to Business Logic or DB I/O.
+    - Helps the View to focus on rendering display only.
+  - **View**
+    1. Renders Display
+    2. Maps the data contained in the Models to the display
+    - In this project, View takes care of creating HTML.
+  - **Controller**:
+    1. Takes in HTTP Request
+    2. Inspects/Validates Parameters
+    3. Runs Business Logics
+    4. Gets data, contains them in the Models, and tosses them to the Views
+    - Since Controller's workload is so much heavier than the other components, Model and View, do, usually another component, Service is added to take care of Business Logics, so that controller's workload does not overflow.
+    - Sometimes, another component called, Repository, can be added to handle DB I/O to lessen the workload of Business logics as well.
+- How?
+  - Servlet takes care of the Business Logics
+  - JSP takes care of building the View using HTML
+- Why?
+  - Dependency overloaded:
+    - If one file handles all tasks, the source becomes longer, and makes it harder to manage
+  - Life Cycle of modification:
+    - The life cycle of modification of the Business Logics and View are different. Modifying UI View and Business logic differ a lot in frequency, and they do not affect each other. Hence, it makes more sense to manage codes in different sources.
+  - Functionality Specialization:
+    - View Templates like JSP are optimized at rendering the displays, so it is the most effective to let it taking care of rendering only.
+- Project:
+  - Objective:
+    - Applying MVC pattern to the project developed previously.
+      - **Controller**: Servlet
+      - **View**: JSP
+      - **Model**: HttpServletRequest Object
+        - request has data storage as the properties.
+        - ```request.setAttribute()``` sets(stores) the data inside the request. 
+        - ```request.getAttribute()``` gets(loads) the data from the request.
+  - Key points: 
+    - ```/WEB-INF```: if the JSP files are located under this directory, the client cannot request to the file. Only the requests made from the server can be reached.
+    - ```RequestDispatcher.forward()```: Variable having RequestDispatcher can forward the request in the server(i.e. from servlet to jsp, etc.).
+    - **redirect vs forward**:
+      - Redirection is made by the Clients. The response arrives to the Client, and the client request to the redirect path provided by the response. Hence, the Client can track the requests, and URL path changes.
+      - Forwaring is made by the server. Since the server tosses the request from client to another servlet or jsp file, the client cannot track the behaviour.
+
