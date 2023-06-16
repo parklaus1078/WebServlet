@@ -59,5 +59,37 @@
 
 # MVC pattern
 - What?
-  - Servlet takes care of the business logics
-  - JSP focuses on drawing View using HTML
+  - **Model**
+    1. Contains the data to be mapped by the View.
+    - Since the Model contains the computed data, which are ready to be mapped, View does not need to have any source code related to Business Logic or DB I/O.
+    - Helps the View to focus on rendering display only.
+  - **View**
+    1. Renders Display
+    2. Maps the data contained in the Models to the display
+    - In this project, View takes care of creating HTML.
+  - **Controller**:
+    1. Takes in HTTP Request
+    2. Inspects/Validates Parameters
+    3. Runs Business Logics
+    4. Gets data, contains them in the Models, and tosses them to the Views
+    - Since Controller's workload is so much heavier than the other components, Model and View, do, usually another component, Service is added to take care of Business Logics, so that controller's workload does not overflow.
+    - Sometimes, another component called, Repository, can be added to handle DB I/O to lessen the workload of Business logics as well.
+- How?
+  - Servlet takes care of the Business Logics
+  - JSP takes care of building the View using HTML
+- Why?
+  - Dependency overloaded:
+    - If one file handles all tasks, the source becomes longer, and makes it harder to manage
+  - Life Cycle of modification:
+    - The life cycle of modification of the Business Logics and View are different. Modifying UI View and Business logic differ a lot in frequency, and they do not affect each other. Hence, it makes more sense to manage codes in different sources.
+  - Functionality Specialization:
+    - View Templates like JSP are optimized at rendering the displays, so it is the most effective to let it taking care of rendering only.
+- Project:
+  - Objective:
+    - Applying MVC pattern to the project developed previously.
+      - **Controller**: Servlet
+      - **View**: JSP
+      - **Model**: HttpServletRequest Object
+        - request has data storage as the properties.
+        - ```request.setAttribute()``` sets(stores) the data inside the request. 
+        - ```request.getAttribute()``` gets(loads) the data from the request.
