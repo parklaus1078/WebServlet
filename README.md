@@ -99,4 +99,11 @@
     - **redirect vs forward**:
       - Redirection is made by the Clients. The response arrives to the Client, and the client request to the redirect path provided by the response. Hence, the Client can track the requests, and URL path changes.
       - Forwaring is made by the server. Since the server tosses the request from client to another servlet or jsp file, the client cannot track the behaviour.
+    - JSP provides some tags and syntax that simplifies the Java sources in it. 
+- Restrictions:
+  - Redundant lines:
+    - ```dispatcher.forward(request, response)``` has to be mentioned in every controller
+    - ```viewPath``` has same prefix and suffix every time when it's declared. For example, ```/WEB-INF``` is attached as prefix always, and ```.jsp``` is attached as suffix always.
+    - ```HttpServletRequest``` and ```HttpServletResponse``` are always specified, when request is not even used in the view. It's waste of the resource.
+    - 공통 처리가 어려워서 Front Controller 가 필요함. => 공통 처리...?
 

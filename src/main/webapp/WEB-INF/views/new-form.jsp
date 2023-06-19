@@ -10,9 +10,9 @@
 <!-- form tag의 action props에 "/"가 안 들어가면 상대 경로로 적용된다는 게 요점! -->
 <form action="save" method="post">
     username: <input type="text" name="username" />
-    age:      <input type-"text" name="age" />
-    email:    <input type-"text" name="email" />
-    password: <input type-"text" name="password" />
+    age:      <input type="text" name="age" />
+    email:    <input type="text" name="email" />
+    password: <input type="text" name="password" />
     <button type="submit">전송</button>
 </form>
 </body>
